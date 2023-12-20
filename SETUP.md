@@ -1,52 +1,95 @@
-# Open House Management Platform - Setup Guide
+### SETUP.md
 
-## Prerequisites
-Before you begin, ensure you have the following installed on your system:
-- [Node.js](https://nodejs.org/) (for React)
-- [Composer](https://getcomposer.org/) (for Laravel)
-- [MySQL](https://dev.mysql.com/) (as the database)
+## Open House Management Platform Setup Guide
 
-## Getting Started
+This document provides step-by-step instructions for **setting up and using** the Open House Management Platform. Follow these guidelines to ensure a smooth installation process.
 
-### 1. Clone the Repository
+### Table of Contents
 
-git clone https://github.com/Me-AU/OpenHouseManagement.git
+1. [Prerequisites](#prerequisites)
+2. [Installation](#installation)
+3. [User Account Creation](#user-account-creation)
+4. [Project Assignment and Evaluation](#project-assignment-and-evaluation)
+5. [Platform Efficiency and Assessment](#platform-efficiency-and-assessment)
 
-cd OpenHouseManagement
+---
 
+### 1. Prerequisites
 
-### 2. Install Dependencies
+Before proceeding with the installation, make sure you have the following prerequisites installed:
 
-- Laravel
+- PHP (Recommended version: 7.4 or higher)
+- Composer (Dependency manager for PHP)
+- MySQL (or any other supported database)
+- Node.js and npm (for frontend assets)
 
-composer install
+### 2. Installation
 
-- React
+1. Clone the GitHub repository:
 
-npm install
+    ```bash
+    git clone https://github.com/Me-AU/open-house-management.git
+    cd open-house-management
+    ```
 
+2. Install PHP dependencies using Composer:
 
-### 3. Configure the Environment
-- Copy the `.env.example` file to a new file named `.env`.
-- Update the database credentials in the `.env` file.
+    ```bash
+    composer install
+    ```
 
-### 4. Database Setup
+3. Install frontend dependencies using npm:
 
-- Run database migrations
-php artisan migrate
+    ```bash
+    npm install
+    ```
 
+4. Create a copy of the `.env.example` file and rename it to `.env`. Update the database configuration and generate the application key:
 
-### 5. Start the Development Server
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
-php artisan serve
+5. Migrate the database:
 
+    ```bash
+    php artisan migrate
+    ```
 
-### 6. Access the Application
-Visit [http://localhost:8000](http://localhost:8000) in your browser.
+6. Start the development server:
 
-## Additional Notes
-- Customize the setup steps based on your server environment.
-- For detailed instructions on Laravel and React, refer to their respective documentation.
-- If you encounter any issues, check the project's [GitHub Issues](https://github.com/Me-AU/OpenHouseManagement/issues) or create a new one.
+    ```bash
+    php artisan serve
+    ```
 
-Happy coding!
+The platform should now be accessible at `http://localhost:8000`.
+
+### 3. User Account Creation
+
+1. Visit the platform in your web browser.
+2. Register a new account as a Guest (evaluator) or a FYP group, or log in as an Admin.
+3. Guests (evaluators) can set preferences such as project categories and specialty areas.
+4. FYP groups, representing Final Year Project teams, can manage their project details, including assigning keywords and providing essential information about their projects after registration.
+
+### 4. Project Assignment and Evaluation
+
+1. Admin sets the physical location of each FYP project on the demonstration floor.
+2. Projects are randomly assigned to evaluators based on matching keywords and evaluator preferences.
+3. Each evaluator is assigned to evaluate between 3-5 projects.
+
+### 5. Platform Efficiency and Assessment
+
+The Open House Management Platform enhances the efficiency of the FYP evaluation process in the following ways:
+
+- **Automated Project Assignment:** The platform automates the project assignment process, ensuring a fair and unbiased distribution of projects to evaluators based on their preferences and expertise.
+
+- **Anonymous Evaluation:** Evaluators can assess projects without knowing the identities of the students. This anonymity promotes fair assessments and reduces potential biases.
+
+- **Efficient Rubric-based Evaluation:** The inclusion of a rubric-based evaluation system allows for a structured assessment process, ensuring consistency and objectivity in project evaluations.
+
+- **Student Access Control:** Students can view the number of evaluators who assessed their project, promoting transparency, while individual evaluator scores remain confidential to maintain fairness.
+
+---
+
+Feel free to reach out if you encounter any issues during the setup process. Happy evaluating!
