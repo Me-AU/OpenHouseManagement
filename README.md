@@ -28,7 +28,7 @@ The Open House Management Platform is a comprehensive solution designed to facil
 ## Technical Stack
 
 - **Server-Side:** Laravel
-- **Client-Side:** React
+- **Client-Side:** Laravel Blade
 - **Database:** MySQL
 
 ## Getting Started
