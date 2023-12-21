@@ -14,4 +14,9 @@ class WelcomeController extends Controller
 
         return view('welcome', compact('appName'));
     }
+
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
 }
