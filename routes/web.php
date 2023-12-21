@@ -65,4 +65,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('admin/set_location', [AdminController::class, 'setProjectLocations'])->name('admin.set_location');
 });
 
+use App\Http\Controllers\StudentController;
+
+Route::middleware(['auth', 'student'])->group(function () {
+    Route::get('student/dashboard', [StudentController::class, 'showDashboard'])->name('student.dashboard');
+});
+
+
 require __DIR__.'/auth.php';
