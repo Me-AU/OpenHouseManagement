@@ -2,6 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\EvaluatorPreferencesController;
+use App\Http\Controllers\EvaluatorController;
+use App\Http\Controllers\FYPGroupController;
+use App\Http\Controllers\AdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +28,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-use App\Http\Controllers\WelcomeController;
-
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 Route::middleware('auth')->group(function () {
@@ -33,19 +37,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [WelcomeController::class, 'dashboard'])->name('dashboard');
 });
 
-use App\Http\Controllers\EvaluatorPreferencesController;
-use App\Http\Controllers\EvaluatorController;
-
 Route::middleware(['auth', 'evaluator'])->group(function () {
     // Evaluator Preferences Routes
-    // Route::get('evaluator/preferences', [EvaluatorPreferencesController::class, 'showForm'])->name('evaluator.preferences');
-    // Route::post('evaluator/preferences/update', [EvaluatorPreferencesController::class, 'updatePreferences'])->name('evaluator.preferences.update');
+    Route::get('evaluator/preferences', [EvaluatorPreferencesController::class, 'showForm'])->name('evaluator.preferences');
+    Route::post('evaluator/preferences/update', [EvaluatorPreferencesController::class, 'updatePreferences'])->name('evaluator.preferences.update');
 
     // Evaluator Dashboard
     Route::get('evaluator/dashboard', [EvaluatorController::class, 'showDashboard'])->name('evaluator.dashboard');
+    Route::get('evaluator/assigned-projects', [EvaluatorController::class, 'showAssignedProjects'])->name('evaluator.assigned_projects');
+    Route::post('evaluator/score/{projectId}', [EvaluatorController::class, 'scoreProject'])->name('evaluator.score_project');
 });
-
-use App\Http\Controllers\FYPGroupController;
 
 Route::middleware(['auth', 'fypgroup'])->group(function () {
     // FYP Group Dashboard
@@ -55,8 +56,6 @@ Route::middleware(['auth', 'fypgroup'])->group(function () {
     Route::get('fypgroup/project/edit/{id}', [FYPGroupController::class, 'editProject'])->name('fypgroup.project.edit');
     Route::patch('fypgroup/project/update/{id}', [FYPGroupController::class, 'updateProject'])->name('fypgroup.project.update');
 });
-
-use App\Http\Controllers\AdminController;
 
 Route::middleware(['auth', 'admin'])->group(function () {
     // Admin Dashboard

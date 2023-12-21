@@ -1,14 +1,15 @@
 <?php
 
+// EvaluatorPreference.php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class EvaluatorPreference extends Model
 {
-    use HasFactory;
-
-    // Define the table associated with the model
-    protected $table = 'evaluator_preferences';
+    public function evaluator()
+    {
+        return $this->belongsTo(Evaluator::class);
+    }
 }
