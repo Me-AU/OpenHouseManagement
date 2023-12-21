@@ -4,7 +4,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class WelcomeController extends Controller
 {
@@ -17,6 +17,8 @@ class WelcomeController extends Controller
 
     public function dashboard()
     {
+        Log::info(auth()->user()->role); // Log the user's role
+
         return view('dashboard');
     }
 }
